@@ -95,15 +95,26 @@ void cat_in_action(int argc, char** argv) {
   }
 }
 
+
+
 void printer(char c, int b, int e, int n, int s, int t) {
   int was_opened = -1;   // -1 wasn't opened yet
   int was_new_line = -1; // -1 last char wasn't a \n
   
+  int was_printed = -1;  // -1 means it wasn't printed yet
+
   char output = c;
 
   if (c == '\n') {
     if (e == 0) {
       output = '$';
+    }
+  }
+
+  if (t == 0) {
+    if (c == '	') {
+      printf("^I");
+      was_printed = 0;
     }
   }
 
@@ -113,10 +124,12 @@ void printer(char c, int b, int e, int n, int s, int t) {
   //   }
   // }
 
-  if (c == '\n' && e == 0) {
-    printf("%c\n", output);
-  } else {
-    printf("%c", output);
+  if (was_printed != 0) {
+    if (c == '\n' && e == 0) {
+      printf("%c\n", output);
+    } else {
+      printf("%c", output);
+    }
   }
   // printf("%c", output);
 }
