@@ -31,29 +31,38 @@ void cat_in_action(int argc, char** argv) {
   // int t_f = 1; // отображает табы как ^I
 
   int opt;
-  while ((opt = getopt_long (argc, argv, "benstET", long_opt, NULL)) != -1) {
+  while ((opt = getopt_long (argc, argv, ":benstET", long_opt, NULL)) != -1) {
     switch (opt) {
       case 'b':
         printf("%c is option\n", (char)opt);
         number_non_empty_lines_b = 0;
         break;
       case 'e':
+        printf("%c is option\n", (char)opt);
         show_dollar_ends_e = 0;
         break;
       case 'n':
+        printf("%c is option\n", (char)opt);
         number_all_lines_n = 0;
         break;
       case 's':
+        printf("%c is option\n", (char)opt);
         suppress_empty_lines_s = 0;
         break;
       case 't':
+        printf("%c is option\n", (char)opt);
         show_tabs_t = 0;
         break;
       case 'E':
+        printf("%c is option\n", (char)opt);
         show_dollar_ends_e = 0;
         break;
       case 'T':
+        printf("%c is option\n", (char)opt);
         show_tabs_t = 0;
+        break;
+      case '?':
+        // printf("%c no option like this\n", (char)opt);
         break;
       default:
         break;
