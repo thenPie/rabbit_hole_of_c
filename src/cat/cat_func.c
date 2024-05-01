@@ -34,31 +34,31 @@ void cat_in_action(int argc, char** argv) {
   while ((opt = getopt_long (argc, argv, ":benstET", long_opt, NULL)) != -1) {
     switch (opt) {
       case 'b':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         number_non_empty_lines_b = 0;
         break;
       case 'e':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         show_dollar_ends_e = 0;
         break;
       case 'n':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         number_all_lines_n = 0;
         break;
       case 's':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         suppress_empty_lines_s = 0;
         break;
       case 't':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         show_tabs_t = 0;
         break;
       case 'E':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         show_dollar_ends_e = 0;
         break;
       case 'T':
-        printf("%c is option\n", (char)opt);
+        // printf("%c is option\n", (char)opt);
         show_tabs_t = 0;
         break;
       case '?':
@@ -77,12 +77,19 @@ void cat_in_action(int argc, char** argv) {
         // printf("%c", c);
         printer(c, number_non_empty_lines_b, show_dollar_ends_e, number_all_lines_n, suppress_empty_lines_s, show_tabs_t);
       }
+      /* not needed, adds a dollar at the end
+      outputting to console
       if (c == EOF && show_dollar_ends_e == 0) {
         printf("$");
       }
+      */
+      /*  not needed, adds a \n
+      at the end of each file
+      when outputting to console
       if (i < argc - 1) {
         printf("\n");
       }
+      */
     }
     fclose(file);
   }
@@ -94,13 +101,17 @@ void printer(char c, int b, int e, int n, int s, int t) {
   
   char output = c;
 
-
-
-  if (e == 0) {
-    if (c == '\n') {
+  if (c == '\n') {
+    if (e == 0) {
       output = '$';
     }
   }
+
+  // if (e == 0) {
+  //   if (c == '\n') {
+  //     output = '$';
+  //   }
+  // }
 
   if (c == '\n' && e == 0) {
     printf("%c\n", output);
