@@ -77,16 +77,24 @@ void cat_in_action(int argc, char** argv) {
         // printf("%c", c);
         printer(c, number_non_empty_lines_b, show_dollar_ends_e, number_all_lines_n, suppress_empty_lines_s, show_tabs_t);
       }
+      if (c == EOF && show_dollar_ends_e == 0) {
+        printf("$");
+      }
+      if (i < argc - 1) {
+        printf("\n");
+      }
     }
     fclose(file);
   }
 }
 
 void printer(char c, int b, int e, int n, int s, int t) {
-  // int was_opened = -1;   // -1 wasn't opened yet
-  // int was_new_line = -1; // -1 last char wasn't a \n
+  int was_opened = -1;   // -1 wasn't opened yet
+  int was_new_line = -1; // -1 last char wasn't a \n
   
   char output = c;
+
+
 
   if (e == 0) {
     if (c == '\n') {
@@ -94,7 +102,7 @@ void printer(char c, int b, int e, int n, int s, int t) {
     }
   }
 
-  if (c == '\n') {
+  if (c == '\n' && e == 0) {
     printf("%c\n", output);
   } else {
     printf("%c", output);
