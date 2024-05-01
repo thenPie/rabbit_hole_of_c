@@ -6,6 +6,7 @@
 
 void cat(int argc, char** argv);
 void cat_in_action(int argc, char** argv);
+void printer(char c, int b, int e, int n, int s, int t);
 
 // void output(FILE* file, int argc, char** argv, struct option long_opt[], int b, int e, int n, int s, int t);
 

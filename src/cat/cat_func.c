@@ -74,41 +74,33 @@ void cat_in_action(int argc, char** argv) {
     if (file != NULL) {
       char c;
       while ((c = fgetc(file)) != EOF) {
-        printf("%c", c);
+        // printf("%c", c);
+        printer(c, number_non_empty_lines_b, show_dollar_ends_e, number_all_lines_n, suppress_empty_lines_s, show_tabs_t);
       }
     }
     fclose(file);
   }
 }
 
-// void output(FILE* file, int argc, char** argv, struct option long_opt[3], int b,
-//             int e, int n, int s, int t) {
-//   int opt;
-//   while ((opt = getopt_long(argc, argv, "benstET", long_opt, NULL)) != -1) {
-//     switch (opt) {
-//       case 'b':
-//         printf("%s - is option\n", (char)opt);
-//         break;
-//       case 'e':
-//         break;
-//       case 'n':
-//         break;
-//       case 's':
-//         break;
-//       case 't':
-//         break;
-//       case 'E':
-//         break;
-//       case 'T':
-//         break;
-//     }
-//   }
+void printer(char c, int b, int e, int n, int s, int t) {
+  // int was_opened = -1;   // -1 wasn't opened yet
+  // int was_new_line = -1; // -1 last char wasn't a \n
+  
+  char output = c;
 
-//   char c;
-//   while ((c = fgetc(file)) != EOF) {
-//     printf("%c", c);
-//   }
-// }
+  if (e == 0) {
+    if (c == '\n') {
+      output = '$';
+    }
+  }
+
+  if (c == '\n') {
+    printf("%c\n", output);
+  } else {
+    printf("%c", output);
+  }
+  // printf("%c", output);
+}
 
 // getopt, getopt_long, getopt_long_only, optarg, optind, opterr,
 // optopt - Parse command-line options
